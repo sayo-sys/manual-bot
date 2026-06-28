@@ -134,8 +134,11 @@ def handle_mention(event, say):
         say("関連するマニュアルが見つかりませんでした。\nキーワードを変えて再度お試しください。")
         return
 
-    answer = ask_claude(question, manual_content)
-    say(answer)
+    try:
+        answer = ask_claude(question, manual_content)
+        say(answer)
+    except Exception:
+        say("⚠️ 回答の生成中にエラーが発生しました。少し時間をおいて再度お試しください。")
 
 
 @app.event("message")
@@ -163,8 +166,11 @@ def handle_dm(event, say):
         say("関連するマニュアルが見つかりませんでした。\nキーワードを変えて再度お試しください。")
         return
 
-    answer = ask_claude(question, manual_content)
-    say(answer)
+    try:
+        answer = ask_claude(question, manual_content)
+        say(answer)
+    except Exception:
+        say("⚠️ 回答の生成中にエラーが発生しました。少し時間をおいて再度お試しください。")
 
 
 if __name__ == "__main__":
