@@ -6,7 +6,10 @@ from slack_bolt.adapter.socket_mode import SocketModeHandler
 import anthropic
 
 app = App(token=os.environ["SLACK_BOT_TOKEN"])
-claude_client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+claude_client = anthropic.Anthropic(
+    api_key=os.environ["ANTHROPIC_API_KEY"],
+    timeout=30.0,
+)
 
 NOTION_TOKEN = os.environ["NOTION_TOKEN"]
 NOTION_HEADERS = {
